@@ -1,9 +1,10 @@
 import React from 'react'
 import { 
     GoogleMap, useLoadScript, 
-    Marker, InfoWindow 
+    Marker, InfoWindow
 } from '@react-google-maps/api';
 import mapStyle from './mapStyle';
+import test from './test';
 
 export default function MyGoogleMap() {
 
@@ -27,10 +28,19 @@ export default function MyGoogleMap() {
         libraries,
     });
 
+    const mapRef = React.useRef();
+    const onMapLoad = React.useCallback((map) => {
+        mapRef.current = map;
+        console.log(map.data);
+        JSON.stringify(test)
+        console.log(test);
+        map.data.addGeoJson(test)
+    }, []);
+
     if (loadError) return "Error loading maps";
     if (!isLoaded) return "Loading Maps";
 
-
+    
     return <div>
         <div>
             <h1>Action <span role="img" aria-label='camera'>🎥</span></h1>
@@ -40,11 +50,12 @@ export default function MyGoogleMap() {
                 <option value="2">test2</option>
             </select>
         </div>
-        <GoogleMap 
+        <GoogleMap
             mapContainerStyle={mapContainerStyle} 
             zoom={13} 
             center={center}
             options={options}
+            onLoad={onMapLoad}
 
         ></GoogleMap>
     </div>;

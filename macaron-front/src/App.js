@@ -1,5 +1,4 @@
 import './App.css';
-//import MyComponent from './googleMaps'
 import MyGoogleMap from './googleMap';
 
 function App() {
