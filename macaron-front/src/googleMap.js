@@ -9,8 +9,8 @@ export default function MyGoogleMap() {
 
     const libraries = ["places"];
     const mapContainerStyle = {
-        width: '80vw',
-        height: '80vh'
+        width: '100vw',
+        height: '100vh'
     };
     const center = {
         lat: 48.856613,
@@ -18,6 +18,8 @@ export default function MyGoogleMap() {
     };
     const options = {
         styles: mapStyle,
+        disableDefaultUI: true,
+        zoomControl: true
     };
 
     const {isLoaded, loadError} = useLoadScript({
@@ -30,9 +32,17 @@ export default function MyGoogleMap() {
 
 
     return <div>
+        <div>
+            <h1>Action <span role="img" aria-label='camera'>🎥</span></h1>
+            <select>
+                <option value="">Choisir un arrondissement</option>
+                <option value="1">test1</option>
+                <option value="2">test2</option>
+            </select>
+        </div>
         <GoogleMap 
             mapContainerStyle={mapContainerStyle} 
-            zoom={12} 
+            zoom={13} 
             center={center}
             options={options}
 
