@@ -1,11 +1,13 @@
 import './App.css';
-import MyComponent from './googleMaps'
+//import MyComponent from './googleMaps'
+import MyGoogleMap from './googleMap';
 
 function App() {
   return (
     <div className="App">
-      <h1>My Google Maps Demo</h1>
-      <MyComponent />
+      <h1>My Second Google Maps Demo</h1>
+      <MyGoogleMap />
+
     </div>
   );
 }
