@@ -20,7 +20,7 @@ export default function MyGoogleMap() {
     const options = {
         styles: mapStyle,
         disableDefaultUI: true,
-        zoomControl: true
+        zoomControl: true,
     };
 
     const {isLoaded, loadError} = useLoadScript({
@@ -31,10 +31,17 @@ export default function MyGoogleMap() {
     const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
         mapRef.current = map;
-        console.log(map.data);
         JSON.stringify(test)
-        console.log(test);
         map.data.addGeoJson(test)
+        
+        map.data.setStyle(() => {
+            return {
+                fillOpacity: 0,
+                strokeColor: "grey",
+                strokeWeight: 1,
+            }
+        })
+        console.log(map.data);
     }, []);
 
     if (loadError) return "Error loading maps";
@@ -56,7 +63,7 @@ export default function MyGoogleMap() {
             center={center}
             options={options}
             onLoad={onMapLoad}
-
-        ></GoogleMap>
+        >
+        </GoogleMap>
     </div>;
 }
