@@ -30,13 +30,21 @@ export default function MyGoogleMap() {
         libraries,
     });
 
+    // MARKER
     const [activeMarker, setActiveMarker] = React.useState(null);
     const markers = [];
     
-    for (let i = 0, length = filming.length; i < length; i++) {
+    for (let i = 0, length = 25; i < length; i++) {
         var data = filming[i];
         let newMarker ={ 
             id: i,
+            nom_tournage: data.properties.nom_tournage,
+            nom_realisateur: data.properties.nom_realisateur ,
+            adresse_lieu: data.properties.adresse_lieu ,
+            date_debut: data.properties.date_debut,
+            date_fin: data.properties.date_fin,
+            type_tournage: data.properties.type_tournage,
+            nom_producteur: data.properties.nom_producteur,
             position: {
                 lat: data.geometry.coordinates[1],
                 lng: data.geometry.coordinates[0]
@@ -72,18 +80,13 @@ export default function MyGoogleMap() {
         
     }, []);
     
-    // MARKER
-    
-
-    // INFOWINDOW
-    
     if (loadError) return "Error loading maps";
-    if (!isLoaded) return "Loading Maps";
+    if (!isLoaded) return "Loading Maps...";
 
     return ( 
         <div>
             <div>
-                <h1>Action <span role="img" aria-label='camera'>🎥</span></h1>
+                <h1>FOCUS <span role="img" aria-label='camera'>🎥</span></h1>
                 <select>
                     <option value="">Choisir un arrondissement</option>
                     <option value="1">test1</option>
@@ -99,7 +102,17 @@ export default function MyGoogleMap() {
                 onLoad={onMapLoad}
                 onClick={() => setActiveMarker(null)}
             >
-                {markers.map(({id, position}) => (
+                {markers.map(({
+                    id, 
+                    nom_tournage, 
+                    nom_realisateur,
+                    adresse_lieu,
+                    date_debut,
+                    date_fin,
+                    type_tournage,
+                    nom_producteur,
+                    position
+                }) => (
                     <Marker
                         key= {id}
                         position={position}
@@ -116,9 +129,17 @@ export default function MyGoogleMap() {
                                 }
                             >
                                 <div>
-                                <h2>
-                                    test
-                                </h2>
+                                    <h2>
+                                        {nom_tournage}
+                                    </h2>
+                                    <ul>
+                                        <li>réalisateur : {nom_realisateur}</li>
+                                        <li>lieu de tournage : {adresse_lieu}</li>
+                                        <li>du {date_debut} au {date_fin} </li>
+                                        <li>tyde de tournage : {type_tournage}</li>
+                                        <li>produit par : {nom_producteur}</li>
+                                    </ul>
+                                    
                                 </div>
                             </InfoWindow>
                         ) : null}
