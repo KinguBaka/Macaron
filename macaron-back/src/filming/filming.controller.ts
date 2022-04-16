@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param} from '@nestjs/common';
 import { FilmingService } from './filming.service';
 
 // localhost:3000/filming
@@ -9,5 +9,10 @@ export class FilmingController {
     @Get()
     findAll(): Promise<any[]> {
         return this.filmingService.findAll();
+    }
+
+    @Get(':arr')
+    findOneArr(@Param('arr') arr: string) {
+        return this.filmingService.findOneArr(arr)
     }
 }
