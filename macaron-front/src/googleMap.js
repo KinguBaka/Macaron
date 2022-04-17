@@ -6,8 +6,7 @@ import {
 import mapStyle from './mapStyle';
 import test from './test';
 import filming from './filming';
-
-
+import axios from 'axios';
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -34,7 +33,7 @@ export default function MyGoogleMap() {
     const [activeMarker, setActiveMarker] = React.useState(null);
     const markers = [];
     
-    for (let i = 0, length = 25; i < length; i++) {
+    for (let i = 0, length = 300; i < length; i++) {
         var data = filming[i];
         let newMarker ={ 
             id: i,
