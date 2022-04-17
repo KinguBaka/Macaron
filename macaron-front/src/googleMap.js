@@ -50,8 +50,7 @@ export default function MyGoogleMap() {
                 lng: data.geometry.coordinates[0]
             }
             }
-        markers.push(newMarker);
-            
+        markers.push(newMarker);     
     }
 
     const handleActiveMarker = (marker) => {
