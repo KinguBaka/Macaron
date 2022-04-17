@@ -1,3 +1,2 @@
 cd macaron-back
-npm install &
-npm run start
+npm install && wait npm run start
