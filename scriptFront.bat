@@ -1,3 +1,3 @@
 cd macaron-front
-npm init
+npm install &
 npm run start

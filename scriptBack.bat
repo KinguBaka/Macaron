@@ -1,3 +1,3 @@
 cd macaron-back
-npm init
+npm install &
 npm run start
